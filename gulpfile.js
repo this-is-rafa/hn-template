@@ -40,10 +40,10 @@ gulp.task('js', function () {
     .pipe(gulp.dest("./dist/js"));
 });
 
-gulp.task('default', ['html', 'sassy', 'js']);
+gulp.task('default', gulp.series('html', 'sassy', 'js'));
 
 gulp.task('watch', function () {
-  gulp.watch('src/*.html', ['html']);
-  gulp.watch('src/scss/*.scss', ['sassy']);
-  gulp.watch('src/js/*.js', ['js']);
+  gulp.watch('src/*.html', gulp.series('html'));
+  gulp.watch('src/scss/*.scss', gulp.series('sassy'));
+  gulp.watch('src/js/*.js', gulp.series('js'));
 });
